@@ -1,0 +1,91 @@
+name: 同步作者数据并部署网站
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: 获取自己的代码
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: 同步作者的 data 文件夹
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags --depth=1 \
+            https://github.com/HU-eun/campus-recruitment.git main
+          git restore --source=FETCH_HEAD --staged --worktree -- data/
+
+      - name: 检查数据完整性
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          for name in ("jobs", "majors", "platforms", "resources"):
+              path = Path("data") / f"{name}.json"
+              data = json.loads(path.read_text(encoding="utf-8"))
+              if not isinstance(data, list) or not data:
+                  raise SystemExit(f"{path} 格式错误或为空，停止部署")
+              print(f"{name}: {len(data)} 条")
+
+          if not Path("data/all-data.js").is_file():
+              raise SystemExit("缺少 all-data.js，停止部署")
+          PY
+          node --check data/all-data.js
+
+      - name: 保存数据更新
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --cached --quiet; then
+            echo "作者数据没有变化"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "同步作者校招数据"
+            git push origin HEAD:main
+          fi
+
+      - name: 准备网站文件
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          cp index.html app.js _site/
+          cp -r data _site/
+          touch _site/.nojekyll
+
+      - name: 设置 GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: 上传网站
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: 发布网站
+        id: deployment
+        uses: actions/deploy-pages@v4
