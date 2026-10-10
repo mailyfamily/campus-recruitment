@@ -150,60 +150,89 @@ tr:hover td{background:#f4f4f2}
 .check-suggestion-item{padding:8px 12px;background:#f4f4f2;border-radius:8px;margin-bottom:6px;font-size:13px;color:#292929;border-left:3px solid var(--primary)}
 .check-interview-q{padding:8px 12px;background:#fef3c7;border-radius:8px;margin-bottom:6px;font-size:13px;color:#92400e}
 
-/* Modern Bauhaus: primary colors, geometric structure */
-:root{--primary:#1545c4;--primary-light:#e8edfc;--bauhaus-red:#e33226;--bauhaus-yellow:#f5cf27;--bauhaus-black:#171717}
-body{background:#f4f4f2;color:#171717}
-.card,.stat-card,.job-card,.filter-sidebar,.filter-panel,.filter-bar{border:1px solid #dedede;border-radius:0;box-shadow:none}
-.card{padding:24px}
-.btn,input,select,textarea,.select-trigger,.select-dropdown,.modal,.filter-dropdown,.filter-location-wrap,.page-btn{border-radius:2px}
-.badge,.filter-tag,.resume-version-tab{border-radius:0}
-.header-bar{background:#fff;border-bottom:2px solid #171717;padding-top:16px;padding-bottom:16px}
-.header-bar h1{letter-spacing:-.5px;font-weight:800!important}
-.sidebar{background:#171717;color:#eeeeee}
-.sidebar>div:first-child{border-bottom:4px solid #f5cf27!important;padding-top:24px!important;padding-bottom:24px!important}
-.sidebar>div:first-child>div:last-child,.nav-group-title{color:#bdbdbd!important}
-.nav-item{border-left-width:4px;padding-top:12px;padding-bottom:12px}
-.nav-item:hover{background:#292929}
-.nav-item.active{background:#1545c4;border-left-color:#f5cf27}
-.main-content>[role="note"]{background:#fff!important;color:#646464!important;border-bottom:1px solid #dedede!important;font-size:13px!important}
-.main-content>[role="note"] a{color:#1545c4!important}
-.season-card{position:relative;border:1px solid #171717;border-top:6px solid #171717;background:#fff!important;color:#171717!important;overflow:hidden}
-.season-card::after{content:'';position:absolute;right:0;top:0;width:72px;height:6px;background:#e33226;box-shadow:-72px 0 #f5cf27,-144px 0 #1545c4}
-#todayDate{font-size:28px!important;letter-spacing:-1px}
-#currentStage{color:#1545c4}
-.season-card .timeline::before{background:#dedede}
-.season-card .timeline-item::before{background:#cccccc;border-color:#fff}
-.season-card .timeline-item.current::before{background:#e33226;box-shadow:none}
-.stat-card{border-top:3px solid #171717;text-align:left;padding:18px}
-.stat-number{color:#171717!important;font-size:30px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-1px}
-#statsRow .stat-card:nth-child(1){background:#1545c4;border-color:#1545c4}
-#statsRow .stat-card:nth-child(1) .stat-number,#statsRow .stat-card:nth-child(1) .stat-label{color:#fff!important}
-#statsRow .stat-card:nth-child(2){background:#f5cf27;border-color:#f5cf27}
-#statsRow .stat-card:nth-child(2) .stat-number,#statsRow .stat-card:nth-child(2) .stat-label{color:#171717!important}
-.stat-card:hover{transform:none;box-shadow:none;outline:1px solid #171717}
-.job-card{border-left:3px solid #171717;padding:20px}
-.job-card:hover{transform:none;box-shadow:none;border-left-color:#1545c4;background:#fafbff}
-.job-card.applied{border-left-color:#34734b;background:#f0f6f1}
-.job-card a{color:#1545c4!important;text-decoration:underline;text-underline-offset:3px}
-.main-content [style*="color:#2563eb"]{color:#1545c4!important}
-.main-content [style*="color:#1e293b"]{color:#171717!important}
-.main-content [style*="color:#64748b"]{color:#646464!important}
-.main-content [style*="background:#f8fafc"]{background:#f4f4f2!important}
-.badge-blue{background:#e8edfc;color:#1545c4}
-.badge-purple,.badge-gray{background:#f0f0ed;color:#444}
-.badge-yellow{background:#fff4bd;color:#635000}
-.badge-red{background:#fde9e5;color:#b3281e}
-.badge-green{background:#e8f1e9;color:#34734b}
-.btn-primary{background:#1545c4}
-.btn-primary:hover{background:#10369c}
-.filter-label::before,.filter-sidebar .filter-label::before{background:#e33226;width:3px;border-radius:0}
-.select-option.checked,.filter-btn-active{background:#e8edfc;color:#1545c4}
-.filter-tag:hover,.resume-version-tab:hover{border-color:#1545c4;color:#1545c4}
-.filter-tag.active,.resume-version-tab.active,.page-btn.active{background:#1545c4;border-color:#1545c4;color:#fff}
-input:focus,select:focus,textarea:focus,.select-trigger.open{border-color:#1545c4;box-shadow:0 0 0 2px rgba(21,69,196,.12)}
-a:focus-visible,button:focus-visible{outline:2px solid #1545c4;outline-offset:3px}
-.search-box::before{content:'⌕';font-size:22px;color:#646464}
-@media(max-width:768px){.card{padding:18px}#todayDate{font-size:24px!important}}
+/* Modern minimal layout */
+:root{--primary:#24262b;--primary-light:#f0f1f3}
+body{background:#f6f7f8;color:#24262b;font-family:Arial,'PingFang SC','Microsoft YaHei',sans-serif;-webkit-font-smoothing:antialiased}
+.sidebar{width:208px;background:#fff;color:#62656c;border-right:1px solid #eceef0;padding:28px 16px}
+.sidebar>div:first-child{padding:0 12px 26px!important;border-bottom:0!important}
+.sidebar>div:first-child>div:first-child{color:#24262b!important;font-size:15px!important;letter-spacing:2px;font-weight:700!important}
+.sidebar>div:first-child>div:last-child{color:#979ba2!important;font-size:10px!important;letter-spacing:1px;margin-top:10px!important}
+.nav-item{padding:12px 14px;margin:3px 0;border:0;border-radius:6px;font-size:13px;font-weight:500;color:#696c73}
+.nav-item:hover{background:#f5f6f7;color:#24262b}
+.nav-item.active{background:#eceef1;color:#171a20;font-weight:700;border:0}
+.nav-group-title{padding:24px 14px 8px;font-size:10px;letter-spacing:2px;color:#999da5}
+.main-content{margin-left:208px}
+.header-bar{padding:20px 36px;background:rgba(255,255,255,.96);border-bottom:1px solid #eceef0;min-height:72px}
+.header-bar h1{font-size:16px!important;letter-spacing:1px;font-weight:600!important}
+.main-content>[role="note"]{padding:10px 36px!important;background:#f6f7f8!important;border:0!important;color:#83878e!important;font-size:11px!important;line-height:1.6!important}
+.main-content>[role="note"] a{color:#62656c!important;text-decoration:none!important}
+.page{padding:24px 36px 48px;max-width:1560px}
+.card,.stat-card,.job-card,.filter-sidebar,.filter-panel,.filter-bar{background:#fff;border:0;border-radius:8px;box-shadow:none}
+.card{padding:28px;margin-bottom:24px}
+.season-card{background:#f6f7f8!important;color:#171a20!important;padding:20px 0 30px;border:0;border-bottom:1px solid #e5e7eb;border-radius:0;margin-bottom:28px;position:relative}
+.season-card::after{display:none}
+#todayDate{font-size:34px!important;letter-spacing:-1px;font-weight:500!important;line-height:1.4}
+#currentStage{font-size:16px!important;font-weight:500!important;color:#62656c}
+.season-card .timeline{margin-top:26px!important;padding-left:0}
+.season-card .timeline::before,.season-card .timeline-item::before{display:none}
+.season-card .timeline-item{border-top:2px solid #dddfe3;padding-top:10px;margin-bottom:0}
+.season-card .timeline-item.current{border-top-color:#24262b}
+.season-card .timeline-item>div:first-child{font-size:11px!important}
+.season-card .timeline-item>div:last-child{font-size:10px!important;color:#7e838b}
+.home-layout{gap:28px}
+.filter-sidebar{width:238px;padding:22px;top:96px;max-height:calc(100vh - 120px)}
+.filter-section{margin-bottom:22px}
+.filter-label,.filter-sidebar .filter-label{font-size:11px;font-weight:600;color:#62656c;margin-bottom:10px;letter-spacing:1px}
+.filter-label::before,.filter-sidebar .filter-label::before{display:none}
+.filter-sidebar .filter-location-wrap{border:0;background:#f7f8f9;border-radius:5px;padding:10px;max-height:190px}
+.location-group-title{color:#83878e;font-size:10px;border-bottom:0}
+input,select,textarea,.select-trigger{background:#f4f5f6;border:1px solid transparent;border-radius:5px;color:#393c43;font-size:13px;padding:10px 12px}
+input:focus,select:focus,textarea:focus,.select-trigger.open{border-color:#8a8f98;box-shadow:none;background:#fff}
+.select-trigger:hover{border-color:#b3b7be}
+.select-dropdown,.filter-dropdown{border:1px solid #eceef0;border-radius:6px;box-shadow:0 8px 28px rgba(23,26,32,.08)}
+.select-option.checked{background:#eceef1;color:#24262b}
+.filter-tag,.resume-version-tab{border:0;border-radius:4px;background:#fff;color:#62656c;padding:6px 10px;font-size:11px}
+.filter-tag:hover,.resume-version-tab:hover{background:#e7e9ed;color:#171a20}
+.filter-tag.active,.resume-version-tab.active{background:#24262b;color:#fff;border:0}
+.btn{border-radius:5px;justify-content:center;padding:10px 18px;font-size:12px;font-weight:600;letter-spacing:.3px}
+.btn-primary{background:#24262b;color:#fff}
+.btn-primary:hover{background:#44474e}
+.btn-secondary{background:#eceef1;color:#454951;border:0}
+.btn-secondary:hover{background:#e0e3e7}
+.btn-sm{padding:6px 12px;font-size:11px}
+#statsRow{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:1px!important;background:#e8eaed;border-radius:8px;overflow:hidden;margin-bottom:24px!important}
+#statsRow .stat-card{border:0;border-radius:0;background:#fff;padding:18px 20px;text-align:left}
+.stat-number{color:#24262b!important;font-size:27px;font-weight:500;font-variant-numeric:tabular-nums;letter-spacing:-.6px}
+.stat-label{color:#83878e;font-size:11px;margin-top:6px}
+#statsRow .stat-card:nth-child(2) .stat-number{color:#b34740!important}
+.stat-card:hover{transform:none;box-shadow:none;background:#fafbfc!important}
+.job-card{padding:24px 26px;margin-bottom:12px;border:1px solid transparent;border-left:1px solid transparent}
+.job-card:hover{transform:none;box-shadow:none;border-color:#d8dce2;background:#fff}
+.job-card.applied{border-color:#c4d7cb;background:#fcfefd}
+.job-card>div:first-child>div:first-child{font-size:17px!important;font-weight:600!important;letter-spacing:.2px}
+.job-card>div:nth-child(2){font-size:13px!important;line-height:1.9!important;color:#62656c!important}
+.job-card a{color:#4b5563!important;text-decoration:none!important}
+.job-card a:hover{text-decoration:underline!important;text-underline-offset:3px}
+.badge{border-radius:4px;padding:3px 7px;font-size:10px;font-weight:400}
+.badge-blue,.badge-purple,.badge-gray{background:#f0f1f3;color:#747983}
+.badge-yellow{background:#f6f1e6;color:#89713d}
+.badge-red{background:#f8eeec;color:#a04f47}
+.badge-green{background:#edf4ef;color:#52745d}
+.main-content [style*="color:#2563eb"]{color:#4b5563!important}
+.main-content [style*="color:#1e293b"]{color:#24262b!important}
+.main-content [style*="color:#64748b"]{color:#83878e!important}
+.main-content [style*="background:#f8fafc"]{background:#f6f7f8!important}
+.page-btn{border:0;background:#fff;color:#62656c;border-radius:4px}
+.page-btn.active{background:#24262b;color:#fff}
+.page-btn:hover{color:#171a20;background:#e8eaed}
+.modal{border-radius:10px;box-shadow:0 24px 80px rgba(0,0,0,.16)}
+.search-box::before{content:'⌕';font-size:20px;color:#8b9098}
+a:focus-visible,button:focus-visible{outline:2px solid #6c7480;outline-offset:3px}
+table{font-size:12px}th{background:#f6f7f8;color:#62656c;border-bottom:1px solid #e5e7eb}td{padding:14px 12px}
+@media(max-width:1100px){.page{padding:20px 24px 40px}.header-bar{padding:18px 24px}.home-layout{gap:20px}.filter-sidebar{width:218px;padding:18px}#todayDate{font-size:28px!important}}
+@media(max-width:900px){.home-layout{flex-direction:column}.filter-sidebar{width:100%;position:static;max-height:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.filter-section{margin-bottom:0}.filter-sidebar>button{grid-column:1/-1}}
+@media(max-width:768px){.sidebar{width:240px;padding:24px 16px;box-shadow:12px 0 40px rgba(23,26,32,.12)}.main-content{margin-left:0}.header-bar{padding:16px 20px;min-height:64px}.main-content>[role="note"]{padding:8px 20px!important}.page{padding:16px 16px 32px}#todayDate{font-size:25px!important}.season-card{padding-top:12px}.season-card .timeline-item{min-width:70px!important}.job-card{padding:20px}.card{padding:20px}.filter-sidebar{padding:18px}.stat-number{font-size:23px}#statsRow .stat-card{padding:16px 12px}.filter-sidebar .filter-section:nth-child(3){grid-column:1/-1}}
+@media(max-width:390px){.filter-sidebar{grid-template-columns:1fr}#statsRow{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -222,25 +251,25 @@ a:focus-visible,button:focus-visible{outline:2px solid #1545c4;outline-offset:3p
 
 <nav class="sidebar" id="sidebar">
 <div style="padding:16px 20px;border-bottom:1px solid #292929">
-<div style="font-size:15px;font-weight:700;color:#fff">🎯 校招信息汇总平台</div>
+<div style="font-size:15px;font-weight:700;color:#fff">TANG YONG · JOBS</div>
 <div style="font-size:11px;color:#646464;margin-top:2px">2027届校招/实习信息</div>
 </div>
 <div style="padding:8px 0">
-<div class="nav-item active" data-page="home">🏠 校招广场</div>
-<div class="nav-item" data-page="platforms">🔗 平台导航</div>
-<div class="nav-item" data-page="majors">🎓 专业参考</div>
-<div class="nav-item" data-page="resume">📄 我的简历</div>
-<div class="nav-group-title" onclick="toggleGroup('job-group')"><span>📋 求职管理</span><span id="job-group-arrow">▼</span></div>
+<div class="nav-item active" data-page="home">校招广场</div>
+<div class="nav-item" data-page="platforms">平台导航</div>
+<div class="nav-item" data-page="majors">专业参考</div>
+<div class="nav-item" data-page="resume">我的简历</div>
+<div class="nav-group-title" onclick="toggleGroup('job-group')"><span>求职管理</span><span id="job-group-arrow">▼</span></div>
 <div class="nav-group-items" id="job-group" style="max-height:500px">
-<div class="nav-item" data-page="targets">🎯 目标公司</div>
-<div class="nav-item" data-page="deliveries">📮 投递追踪</div>
-<div class="nav-item" data-page="interviews">🎤 面试复盘</div>
-<div class="nav-item" data-page="dashboard">📊 统计仪表盘</div>
-<div class="nav-item" data-page="reminders">⏰ 节点提醒</div>
-<div class="nav-item" data-page="examples">📝 填写示例</div>
-<div class="nav-item" data-page="guide">📖 使用说明</div>
+<div class="nav-item" data-page="targets">目标公司</div>
+<div class="nav-item" data-page="deliveries">投递追踪</div>
+<div class="nav-item" data-page="interviews">面试复盘</div>
+<div class="nav-item" data-page="dashboard">统计仪表盘</div>
+<div class="nav-item" data-page="reminders">节点提醒</div>
+<div class="nav-item" data-page="examples">填写示例</div>
+<div class="nav-item" data-page="guide">使用说明</div>
 </div>
-<div class="nav-item" data-page="settings">⚙️ 数据管理</div>
+<div class="nav-item" data-page="settings">数据管理</div>
 </div>
 </nav>
 
