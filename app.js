@@ -811,8 +811,13 @@ function renderPlatforms() {
     { key: '综合平台', title: '综合招聘平台' },
   ];
   const headings = new Set(['烟草体系', '电网体系', '铁路体系']);
-  container.innerHTML = '<div class="card" style="font-size:12px;color:#6e6e73;line-height:1.8">链接核对：2026-10-11。企业官网请进入“人才招聘”栏目；标注“检索入口”的项目尚未确认直达网址。部分网站需要登录、验证码或在浏览器中打开。无法打开时，可使用卡片下方的备用检索。</div>' + categories.map(cat => {
-    const items = platforms.filter(p => p[cat.key] && !headings.has(String(p[cat.key]).trim()));
+  container.innerHTML = '<div class="card" style="font-size:12px;color:#6e6e73;line-height:1.8">链接核对：2026-10-11。企业官网请进入“人才招聘”栏目；仅展示已确认地址的项目。部分网站需要登录、验证码或在浏览器中打开。无法打开时，可使用卡片下方的备用检索。</div>' + categories.map(cat => {
+    const items = platforms.filter(p => {
+      if (!p[cat.key] || headings.has(String(p[cat.key]).trim())) return false;
+      const text = String(p[cat.key]).trim();
+      const name = text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/https?:\/\/[^\s]+/g, '').trim() || text;
+      return Boolean(PLATFORM_LINKS[name]) || extractUrl(text) !== '#';
+    });
     if (!items.length) return '';
     return `<div class="card"><h3 style="font-size:16px;font-weight:600;margin:0 0 18px">${cat.title} <span class="badge badge-gray">${items.length}</span></h3>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
