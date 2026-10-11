@@ -142,6 +142,7 @@ document.querySelectorAll('.nav-item').forEach(item => {
 });
 
 function navigateTo(page) {
+  if (page === "platforms") { navigateTo("home"); document.getElementById("platforms-section").scrollIntoView({behavior:"smooth"}); return; }
   const navItem = document.querySelector(`.nav-item[data-page="${page}"]`);
   if (navItem) { navItem.click(); }
   else {
@@ -1551,6 +1552,7 @@ function initApp() {
     hideLoading();
     initFilters();
     renderHome();
+    renderPlatforms();
   } else {
     var elapsed = (Date.now() - loadStartTime) / 1000;
     if (elapsed > 45) {
