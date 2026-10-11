@@ -240,6 +240,11 @@ table{font-size:12px}th{background:#f6f7f8;color:#62656c;border-bottom:1px solid
 @media(max-width:768px){.main-content::before{left:0;background-size:300px 200px}}
 
 .data-update-notice{display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;margin:16px 0 24px;font-size:12px;color:#62656c;line-height:1.8}.data-update-notice strong{font-weight:600;color:#24262b;font-variant-numeric:tabular-nums}.data-update-dot{width:6px;height:6px;border-radius:50%;background:#738778;flex-shrink:0}.data-update-help{font-size:11px;color:#90949b}@media(max-width:768px){.data-update-help{flex-basis:100%;padding-left:16px}}
+
+/* Centered site masthead */
+.header-bar{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:16px;min-height:106px;padding-top:20px;padding-bottom:20px}.site-heading{text-align:center}.site-heading-title{font-size:30px;font-weight:600;letter-spacing:4px;line-height:1.3;color:#171a20;white-space:nowrap}.site-heading-subtitle{font-size:11px;letter-spacing:2px;color:#83878e;margin-top:9px}.header-date{justify-self:end}.sidebar-brand-placeholder[hidden]{display:none!important}.main-content::before{top:106px}.filter-sidebar{top:130px;max-height:calc(100vh - 154px)}
+@media(max-width:1100px){.site-heading-title{font-size:25px;letter-spacing:3px}.header-bar{gap:12px}}
+@media(max-width:768px){.header-bar{grid-template-columns:32px minmax(0,1fr) 32px;padding:18px 16px;gap:8px;min-height:100px}.header-bar h1{display:none}.site-heading-title{font-size:clamp(18px,5vw,25px);letter-spacing:2px}.site-heading-subtitle{font-size:10px;letter-spacing:1px}.header-date{display:none}.main-content::before{top:100px}}
 </style>
 </head>
 <body>
@@ -256,10 +261,7 @@ table{font-size:12px}th{background:#f6f7f8;color:#62656c;border-bottom:1px solid
 <style>@keyframes pulse{0%{width:10%}50%{width:70%}100%{width:10%}}</style>
 
 <nav class="sidebar" id="sidebar">
-<div style="padding:16px 20px;border-bottom:1px solid #292929">
-<div style="font-size:15px;font-weight:700;color:#fff">TANG YONG · JOBS</div>
-<div style="font-size:11px;color:#646464;margin-top:2px">2027届校招/实习信息</div>
-</div>
+<div class="sidebar-brand-placeholder" hidden></div>
 <div style="padding:8px 0">
 <div class="nav-item active" data-page="home">校招广场</div>
 <div class="nav-item" data-page="platforms">平台导航</div>
@@ -285,7 +287,8 @@ table{font-size:12px}th{background:#f6f7f8;color:#62656c;border-bottom:1px solid
 <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
 <h1 id="pageTitle" style="font-size:18px;font-weight:600;margin:0">校招广场</h1>
 </div>
-<div><span class="badge badge-blue" id="todayBadge"></span></div>
+<div class="site-heading" aria-label="Tang Yong Jobs"><div class="site-heading-title">TANG YONG · JOBS</div><div class="site-heading-subtitle">2027届校招 / 实习信息</div></div>
+<div class="header-date"><span class="badge badge-blue" id="todayBadge"></span></div>
 </div>
 
 <div role="note" style="padding:12px 20px;font-size:14px;line-height:1.7;overflow-wrap:anywhere">本站基于 HU-eun 的开源项目 campus-recruitment，由汤勇老师进行界面定制与维护，旨在为学生提供免费的求职信息参考，不用于商业用途。原项目及相关内容的权利归各自权利人所有。招聘信息请以用人单位官方发布为准。如发现功能异常或信息问题，欢迎微信联系：<span style="white-space:nowrap">13430442262</span>。</div>
