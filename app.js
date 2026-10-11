@@ -558,32 +558,279 @@ function renderHome() {
 }
 
 // ========== 平台导航 ==========
+// 本站维护的链接映射独立于上游 data/，自动同步不会覆盖修复。
+const PLATFORM_LINKS = {
+"中国兵器装备集团有限公司": {"url":"https://www.csgc.com.cn/","kind":"企业官网"},
+
+  "中国航空发动机集团有限公司": {
+    "url": "https://aecc.iguopin.com/",
+    "kind": "招聘平台"
+  },
+  "国家石油天然气管网集团有限公司": {
+    "url": "https://zhaopin.pipechina.com.cn/",
+    "kind": "招聘平台"
+  },
+  "中国南方电网有限责任公司": {
+    "url": "https://zhaopin.csg.cn/",
+    "kind": "招聘平台"
+  },
+  "中国大唐集团有限公司": {
+    "url": "https://www.china-cdt.com/",
+    "kind": "企业官网"
+  },
+  "国家电力投资集团有限公司": {
+    "url": "https://www.spic.com.cn/",
+    "kind": "企业官网"
+  },
+  "中国长江三峡集团有限公司": {
+    "url": "https://www.ctg.com.cn/",
+    "kind": "企业官网"
+  },
+  "中国电子信息产业集团有限公司": {
+    "url": "https://www.cec.com.cn/",
+    "kind": "企业官网"
+  },
+  "中国一重集团有限公司": {
+    "url": "https://www.cfhi.com/",
+    "kind": "企业官网"
+  },
+  "哈尔滨电气集团有限公司": {
+    "url": "https://www.harbin-electric.com/",
+    "kind": "企业官网"
+  },
+  "中国东方电气集团有限公司": {
+    "url": "https://www.dongfang.com/",
+    "kind": "企业官网"
+  },
+  "中国远洋海运集团有限公司": {
+    "url": "https://www.coscoshipping.com/",
+    "kind": "企业官网"
+  },
+  "中国航空集团有限公司": {
+    "url": "https://www.airchinagroup.com/",
+    "kind": "企业官网"
+  },
+  "中国中化控股有限责任公司": {
+    "url": "https://www.sinochem.com/",
+    "kind": "企业官网"
+  },
+  "中国五矿集团有限公司": {
+    "url": "https://www.minmetals.com.cn/",
+    "kind": "企业官网"
+  },
+  "中国建筑集团有限公司": {
+    "url": "https://www.cscec.com/",
+    "kind": "企业官网"
+  },
+  "国家开发投资集团有限公司": {
+    "url": "https://www.sdic.com.cn/",
+    "kind": "企业官网"
+  },
+  "中国核工业集团有限公司": {
+    "url": "https://www.cnnc.com.cn/",
+    "kind": "企业官网"
+  },
+  "中国航天科技集团有限公司": {
+    "url": "https://www.spacechina.com/",
+    "kind": "企业官网"
+  },
+  "中国船舶集团有限公司": {
+    "url": "https://www.cssc.net.cn/",
+    "kind": "企业官网"
+  },
+  "中国电子科技集团有限公司": {
+    "url": "https://www.cetc.com.cn/",
+    "kind": "企业官网"
+  },
+  "中国石油天然气集团有限公司": {
+    "url": "https://www.cnpc.com.cn/",
+    "kind": "企业官网"
+  },
+  "中国石油化工集团有限公司": {
+    "url": "https://www.sinopecgroup.com/",
+    "kind": "企业官网"
+  },
+  "中国海洋石油集团有限公司": {
+    "url": "https://www.cnooc.com.cn/",
+    "kind": "企业官网"
+  },
+  "中国华能集团有限公司": {
+    "url": "https://www.chng.com.cn/",
+    "kind": "企业官网"
+  },
+  "中国华电集团有限公司": {
+    "url": "https://www.chd.com.cn/",
+    "kind": "企业官网"
+  },
+  "中国电信集团有限公司": {
+    "url": "https://www.chinatelecom.com.cn/",
+    "kind": "企业官网"
+  },
+  "中国联合网络通信集团有限公司": {
+    "url": "https://www.chinaunicom.com.cn/",
+    "kind": "企业官网"
+  },
+  "中国移动通信集团有限公司": {
+    "url": "https://www.10086.cn/",
+    "kind": "企业官网"
+  },
+  "中国第一汽车集团有限公司": {
+    "url": "https://www.faw.com.cn/",
+    "kind": "企业官网"
+  },
+  "东风汽车集团有限公司": {
+    "url": "https://www.dfmc.com.cn/",
+    "kind": "企业官网"
+  },
+  "中国机械工业集团有限公司": {
+    "url": "https://www.sinomach.com.cn/",
+    "kind": "企业官网"
+  },
+  "鞍钢集团有限公司": {
+    "url": "https://www.ansteel.cn/",
+    "kind": "企业官网"
+  },
+  "中国铝业集团有限公司": {
+    "url": "https://www.chinalco.com.cn/",
+    "kind": "企业官网"
+  },
+  "中国东方航空集团有限公司": {
+    "url": "https://www.ceair.com/",
+    "kind": "企业官网"
+  },
+  "中国南方航空集团有限公司": {
+    "url": "https://www.csair.com/",
+    "kind": "企业官网"
+  },
+  "中粮集团有限公司": {
+    "url": "https://www.cofco.com/",
+    "kind": "企业官网"
+  },
+  "中国储备粮管理集团有限公司": {
+    "url": "https://www.sinograin.com.cn/",
+    "kind": "企业官网"
+  },
+  "国家电网有限公司": {
+    "url": "https://zhaopin.sgcc.com.cn/",
+    "kind": "招聘平台"
+  },
+  "中国矿产资源集团有限公司": {
+    "url": "https://www.cmr-co.com/",
+    "kind": "企业官网"
+  },
+  "中华人民共和国人力资源和社会保障部": {
+    "url": "https://www.mohrss.gov.cn/",
+    "kind": "官方网站"
+  },
+  "国务院国有资产监督管理委员会": {
+    "url": "https://www.sasac.gov.cn/",
+    "kind": "官方网站"
+  },
+  "教育部人才服务网（教育部直属单位公开招聘平台）": {
+    "url": "https://jybzp.chsi.com.cn/",
+    "kind": "招聘平台"
+  },
+  "事业单位招聘考试网": {
+    "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/fwyd/SYkaoshizhaopin/zyhgjjgsydwgkzp/",
+    "kind": "公开招聘平台",
+    "label": "中央和国家机关事业单位公开招聘服务平台"
+  },
+  "国聘网": {
+    "url": "https://www.iguopin.com/",
+    "kind": "招聘平台"
+  },
+  "中央企业2024年招聘": {
+    "url": "https://www.sasac.gov.cn/n2588035/n2588325/index.html",
+    "kind": "招聘公告",
+    "label": "国资委招聘公告"
+  },
+  "国家大学生就业服务平台": {
+    "url": "https://www.ncss.cn/",
+    "kind": "招聘平台"
+  },
+  "中国公共招聘网": {
+    "url": "https://job.mohrss.gov.cn/",
+    "kind": "招聘平台"
+  },
+  "中国烟草人才招聘平台": {
+    "url": "http://www.tobacco.gov.cn/gjyc/zpxx/list.shtml",
+    "kind": "招聘公告"
+  },
+  "国家电网有限公司招聘平台": {
+    "url": "https://zhaopin.sgcc.com.cn/",
+    "kind": "招聘平台"
+  },
+  "南方电网招聘平台": {
+    "url": "https://zhaopin.csg.cn/",
+    "kind": "招聘平台"
+  },
+  "中国铁路人才招聘网": {
+    "url": "https://rczp.china-railway.com.cn/",
+    "kind": "招聘平台"
+  },
+  "实习僧": {
+    "url": "https://www.shixiseng.com/",
+    "kind": "招聘平台"
+  },
+  "应届生求职网": {
+    "url": "https://www.yingjiesheng.com/",
+    "kind": "招聘平台"
+  },
+  "前程无忧": {
+    "url": "https://www.51job.com/",
+    "kind": "招聘平台"
+  },
+  "智联招聘": {
+    "url": "https://www.zhaopin.com/",
+    "kind": "招聘平台"
+  },
+  "BOSS直聘": {
+    "url": "https://www.zhipin.com/",
+    "kind": "招聘平台"
+  },
+  "猎聘": {
+    "url": "https://www.liepin.com/",
+    "kind": "招聘平台"
+  },
+  "牛客网": {
+    "url": "https://www.nowcoder.com/",
+    "kind": "求职平台"
+  }
+};
+function platformEscape(value) {
+  return String(value).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; });
+}
 function renderPlatforms() {
   const platforms = window.platformsData || [];
   const container = document.getElementById('platformList');
   const categories = [
-    { key: '官方平台', title: '🏛️ 官方平台' },
-    { key: '央企', title: '🏢 央企招聘' },
-    { key: '其他央企', title: '🏢 更多央企' },
-    { key: '地方社保局', title: '📋 地方人社局（事业编）' },
-    { key: '综合平台', title: '🔗 综合招聘平台' },
+    { key: '官方平台', title: '官方与公共招聘平台' },
+    { key: '央企', title: '央企入口' },
+    { key: '其他央企', title: '更多央企' },
+    { key: '地方社保局', title: '地方人社招聘入口' },
+    { key: '综合平台', title: '综合招聘平台' },
   ];
-  container.innerHTML = categories.map(cat => {
-    const items = platforms.filter(p => p[cat.key]);
-    if (items.length === 0) return '';
-    return `<div class="card">
-      <h3 style="font-size:15px;font-weight:600;margin:0 0 12px">${cat.title} <span class="badge badge-gray">${items.length}</span></h3>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px">
-        ${items.map(item => {
-          const text = item[cat.key];
-          const url = extractUrl(text);
-          const name = text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/https?:\/\/[^\s]+/g, '').trim();
-          return `<a href="${url}" target="_blank" style="display:block;padding:12px;background:#f8fafc;border-radius:8px;text-decoration:none;color:#334155;transition:all .2s;border:1px solid #e2e8f0" onmouseover="this.style.borderColor='#2563eb';this.style.background='#eff6ff'" onmouseout="this.style.borderColor='#e2e8f0';this.style.background='#f8fafc'">
-            <div style="font-size:13px;font-weight:500">${name || url}</div>
-          </a>`;
-        }).join('')}
-      </div>
-    </div>`;
+  const headings = new Set(['烟草体系', '电网体系', '铁路体系']);
+  container.innerHTML = '<div class="card" style="font-size:12px;color:#6e6e73;line-height:1.8">链接核对：2026-10-11。企业官网请进入“人才招聘”栏目；标注“检索入口”的项目尚未确认直达网址。部分网站需要登录、验证码或在浏览器中打开。无法打开时，可使用卡片下方的备用检索。</div>' + categories.map(cat => {
+    const items = platforms.filter(p => p[cat.key] && !headings.has(String(p[cat.key]).trim()));
+    if (!items.length) return '';
+    return `<div class="card"><h3 style="font-size:16px;font-weight:600;margin:0 0 18px">${cat.title} <span class="badge badge-gray">${items.length}</span></h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+    ${items.map(item => {
+      const text = String(item[cat.key]).trim();
+      const name = text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/https?:\/\/[^\s]+/g, '').trim() || text;
+      const mapped = PLATFORM_LINKS[name];
+      const embedded = extractUrl(text);
+      const search = 'https://www.baidu.com/s?wd=' + encodeURIComponent(name + ' 官方 招聘');
+      const url = mapped ? mapped.url : embedded !== '#' ? embedded : search;
+      const kind = mapped ? mapped.kind : embedded !== '#' ? '来源网址' : '检索入口 · 待核实';
+      const label = mapped && mapped.label ? mapped.label : name;
+      return `<div style="padding:16px;background:#f5f5f7;border-radius:14px;border:1px solid #e8e8ed">
+        <a href="${platformEscape(url)}" target="_blank" rel="noopener noreferrer" style="display:block;color:#0066cc;text-decoration:none;font-size:13px;font-weight:600;line-height:1.6">${platformEscape(label)} ↗</a>
+        <div style="font-size:11px;color:#86868b;margin-top:7px">${platformEscape(kind)}</div>
+        ${url !== search ? `<a href="${platformEscape(search)}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:10px;font-size:11px;color:#6e6e73;text-decoration:underline">备用检索</a>` : ''}
+      </div>`;
+    }).join('')}</div></div>`;
   }).join('');
 }
 
