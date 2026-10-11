@@ -238,6 +238,8 @@ table{font-size:12px}th{background:#f6f7f8;color:#62656c;border-bottom:1px solid
 /* Subtle background watermark; never intercepts clicks. */
 .main-content::before{content:"";position:fixed;left:208px;right:0;top:72px;bottom:0;z-index:39;pointer-events:none;user-select:none;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22360%22%20height%3D%22240%22%20viewBox%3D%220%200%20360%20240%22%3E%3Ctext%20x%3D%22180%22%20y%3D%22120%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%20transform%3D%22rotate(-22%20180%20120)%22%20fill%3D%22%2324262b%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2232%22%20font-weight%3D%22500%22%20letter-spacing%3D%223%22%3ETang%20Yong%3C%2Ftext%3E%3C%2Fsvg%3E");background-repeat:repeat;background-size:360px 240px}
 @media(max-width:768px){.main-content::before{left:0;background-size:300px 200px}}
+
+.data-update-notice{display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;margin:16px 0 24px;font-size:12px;color:#62656c;line-height:1.8}.data-update-notice strong{font-weight:600;color:#24262b;font-variant-numeric:tabular-nums}.data-update-dot{width:6px;height:6px;border-radius:50%;background:#738778;flex-shrink:0}.data-update-help{font-size:11px;color:#90949b}@media(max-width:768px){.data-update-help{flex-basis:100%;padding-left:16px}}
 </style>
 </head>
 <body>
@@ -286,7 +288,7 @@ table{font-size:12px}th{background:#f6f7f8;color:#62656c;border-bottom:1px solid
 <div><span class="badge badge-blue" id="todayBadge"></span></div>
 </div>
 
-<div role="note" style="padding:12px 20px;font-size:14px;line-height:1.7;overflow-wrap:anywhere">仅供学术参考，无商业内容，免费使用。汤勇老师 制作，如有bug或其他问题，请微信联系<span style="white-space:nowrap">13430442262</span></div>
+<div role="note" style="padding:12px 20px;font-size:14px;line-height:1.7;overflow-wrap:anywhere">本站基于 <a href="https://github.com/HU-eun/campus-recruitment" target="_blank" rel="noopener noreferrer" style="text-decoration:underline!important">HU-eun 的开源项目 campus-recruitment</a>，由汤勇老师进行界面定制与维护，旨在为学生提供免费的求职信息参考，不用于商业用途。原项目及相关内容的权利归各自权利人所有。招聘信息请以用人单位官方发布为准。如发现功能异常或信息问题，欢迎微信联系：<span style="white-space:nowrap">13430442262</span>。</div>
 
 <div class="page active" id="page-home">
 <div class="card season-card" style="background:#fff;color:#171717">
@@ -303,6 +305,7 @@ table{font-size:12px}th{background:#f6f7f8;color:#62656c;border-bottom:1px solid
 </div>
 </div>
 
+<div class="data-update-notice" role="status"><span class="data-update-dot" aria-hidden="true"></span><span>岗位信息最近更新：<strong id="latestDataDate">暂无可用日期</strong></span><span class="data-update-help">依据全部岗位的最新更新时间 · 每日检查同步，内容更新取决于来源</span></div>
 <div class="home-layout">
 <div class="filter-sidebar">
 <div class="filter-section"><div class="filter-label">搜索</div><div class="search-box"><input type="text" id="searchInput" placeholder="公司 / 岗位 / 地点关键词" oninput="applyFilters()"></div></div>
@@ -349,6 +352,22 @@ table{font-size:12px}th{background:#f6f7f8;color:#62656c;border-bottom:1px solid
 
 <div class="modal-overlay" id="targetModal"><div class="modal"><div class="modal-title"><span id="targetModalTitle">添加目标公司</span><button onclick="closeModal('targetModal')" style="background:none;border:none;font-size:20px;cursor:pointer">×</button></div><div class="form-row"><div class="form-group"><label>公司名称 *</label><input type="text" id="t_company"></div><div class="form-group"><label>优先级</label><select id="t_priority"><option>冲刺</option><option>稳妥</option><option>保底</option></select></div></div><div class="form-row"><div class="form-group"><label>意向岗位</label><input type="text" id="t_position"></div><div class="form-group"><label>投递状态</label><select id="t_status"><option>未投递</option><option>已投递</option><option>面试中</option><option>已Offer</option><option>已拒绝</option></select></div></div><div class="form-group"><label>备注</label><textarea id="t_note" rows="2"></textarea></div><div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px"><button class="btn btn-secondary" onclick="closeModal('targetModal')">取消</button><button class="btn btn-primary" onclick="saveTarget()">保存</button></div></div></div>
 
+<script>
+(function () {
+  var latest = '';
+  (window.jobsData || []).forEach(function (job) {
+    var match = String(job['更新时间'] || '').trim().match(/^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})(?:$|[T\s])/);
+    if (!match) return;
+    var year = Number(match[1]), month = Number(match[2]), day = Number(match[3]);
+    var date = new Date(Date.UTC(year, month - 1, day));
+    if (date.getUTCFullYear() !== year || date.getUTCMonth() !== month - 1 || date.getUTCDate() !== day) return;
+    var normalized = match[1] + '-' + String(month).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+    if (normalized > latest) latest = normalized;
+  });
+  var el = document.getElementById('latestDataDate');
+  if (el) el.textContent = latest || '暂无可用日期';
+})();
+</script>
 <script src="app.js"></script>
 </body>
 </html>
