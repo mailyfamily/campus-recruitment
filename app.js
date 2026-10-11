@@ -1,3 +1,9 @@
+// 隐藏来源数据中的说明占位行，不作为招聘岗位展示或统计。
+if (Array.isArray(window.jobsData)) {
+  window.jobsData = window.jobsData.filter(function (job) {
+    return String(job['公司名称'] || '').trim() !== '筛选前必看-点这里';
+  });
+}
 
 // ========== 加载检测与错误处理 ==========
 window.addEventListener('error', function(e) {
