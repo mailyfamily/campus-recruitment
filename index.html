@@ -245,6 +245,64 @@ table{font-size:12px}th{background:#f6f7f8;color:#62656c;border-bottom:1px solid
 .header-bar{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:16px;min-height:106px;padding-top:20px;padding-bottom:20px}.site-heading{text-align:center}.site-heading-title{font-size:30px;font-weight:600;letter-spacing:4px;line-height:1.3;color:#171a20;white-space:nowrap}.site-heading-subtitle{font-size:11px;letter-spacing:2px;color:#83878e;margin-top:9px}.header-date{justify-self:end}.sidebar-brand-placeholder[hidden]{display:none!important}.main-content::before{top:106px}.filter-sidebar{top:130px;max-height:calc(100vh - 154px)}
 @media(max-width:1100px){.site-heading-title{font-size:25px;letter-spacing:3px}.header-bar{gap:12px}}
 @media(max-width:768px){.header-bar{grid-template-columns:32px minmax(0,1fr) 32px;padding:18px 16px;gap:8px;min-height:100px}.header-bar h1{display:none}.site-heading-title{font-size:clamp(18px,5vw,25px);letter-spacing:2px}.site-heading-subtitle{font-size:10px;letter-spacing:1px}.header-date{display:none}.main-content::before{top:100px}}
+
+/* Apple-inspired light visual refresh */
+:root{--primary:#0071e3;--primary-light:#edf5ff}
+body{background:#f5f5f7;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif}
+.sidebar{background:rgba(255,255,255,.92);border-right:1px solid #e8e8ed;padding-top:22px}
+.nav-item{border-radius:12px;padding:13px 14px;color:#6e6e73;font-weight:500}
+.nav-item.active{background:#eaf3ff;color:#0066cc;font-weight:600}
+.nav-item:hover{background:#f5f5f7;color:#1d1d1f}
+.nav-group-title{color:#86868b;letter-spacing:1px}
+.header-bar{background:rgba(255,255,255,.82);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.06);min-height:116px;padding-top:24px;padding-bottom:24px}
+.site-heading-title{font-size:34px;letter-spacing:2px;font-weight:650;color:#1d1d1f}
+.site-heading-subtitle{color:#6e6e73;letter-spacing:1.2px}
+.header-bar h1{color:#6e6e73;font-weight:500!important;font-size:14px!important}
+.main-content>[role="note"]{background:#f5f5f7!important;color:#86868b!important;padding-top:16px!important;padding-bottom:0!important;line-height:1.9!important}
+.page{padding-top:28px}
+.season-card{background:radial-gradient(ellipse at 85% 0%,#dcecff 0%,transparent 56%),radial-gradient(ellipse at 0% 100%,#e9e4ff 0%,transparent 55%),#fff!important;border:1px solid rgba(255,255,255,.9);border-radius:24px;padding:30px 32px 26px;margin-bottom:14px;overflow:hidden;box-shadow:0 8px 32px rgba(35,60,95,.035)}
+#todayDate{font-size:42px!important;letter-spacing:-1.5px;font-weight:650!important;color:#1d1d1f}
+#currentStage{color:#0066cc!important;font-size:20px!important;font-weight:600!important}
+.season-card .timeline{margin-top:30px!important;gap:12px!important}
+.season-card .timeline-item{border-top-color:rgba(100,115,150,.18);padding-top:12px}
+.season-card .timeline-item.current{border-top-color:#0071e3;color:#0066cc}
+.data-update-notice{margin:0 4px 24px;font-size:12px}
+.data-update-dot{background:#34a853;box-shadow:0 0 0 3px #e6f3e9}
+.data-update-notice strong{color:#0066cc}
+.home-layout{gap:24px}
+.filter-sidebar{border-radius:20px;border:1px solid #eeeef2;padding:24px;background:#fff;top:140px;max-height:calc(100vh - 164px)}
+.filter-label,.filter-sidebar .filter-label{color:#6e6e73;letter-spacing:.2px;font-size:12px}
+input,select,textarea,.select-trigger{background:#f5f5f7;border:1px solid #ededf1;border-radius:10px;padding:11px 12px;color:#1d1d1f}
+input:focus,select:focus,textarea:focus,.select-trigger.open{border-color:#0071e3;box-shadow:0 0 0 3px rgba(0,113,227,.1)}
+.select-option.checked{background:#edf5ff;color:#0066cc}
+.filter-tag,.resume-version-tab{border-radius:8px;background:#f5f5f7;color:#6e6e73}
+.filter-tag.active,.resume-version-tab.active{background:#0071e3;color:#fff}
+.btn{border-radius:999px;letter-spacing:0;font-weight:500}
+.btn-primary{background:#0071e3;color:#fff}
+.btn-primary:hover{background:#0077ed}
+.btn-secondary{background:#f0f0f3;color:#1d1d1f}
+.btn-secondary:hover{background:#e8e8ed}
+.card,.filter-panel,.filter-bar{border-radius:20px;border:1px solid #eeeef2;box-shadow:0 4px 22px rgba(0,0,0,.025)}
+#statsRow{gap:12px!important;background:transparent;border-radius:0;overflow:visible}
+#statsRow .stat-card{border-radius:18px;border:1px solid #eeeef2;padding:22px;background:#fff;box-shadow:0 4px 22px rgba(0,0,0,.025)}
+#statsRow .stat-card:first-child{background:linear-gradient(145deg,#fff,#edf5ff)}
+.stat-number{font-size:32px!important;font-weight:650;color:#1d1d1f!important;letter-spacing:-1px}
+#statsRow .stat-card:first-child .stat-number{color:#0071e3!important}
+.stat-label{font-size:12px;color:#6e6e73}
+.job-card{border-radius:20px;padding:26px 28px;border:1px solid #ededf1;box-shadow:0 4px 22px rgba(0,0,0,.025);margin-bottom:16px;transition:box-shadow .2s,border-color .2s}
+.job-card:hover{border-color:#c9def5;box-shadow:0 10px 32px rgba(0,60,130,.07);transform:none}
+.job-card>div:first-child>div:first-child{font-size:19px!important;letter-spacing:-.3px}
+.job-card a{color:#0066cc!important}
+.badge{border-radius:6px;padding:4px 9px}
+.badge-blue{background:#edf5ff;color:#0066cc}
+.badge-purple{background:#f2edfc;color:#7655a6}
+.page-btn{border-radius:9px;border-color:#e5e5ea}
+.page-btn.active{background:#0071e3;border-color:#0071e3}
+.modal{border-radius:24px;box-shadow:0 24px 80px rgba(0,0,0,.18)}
+.main-content::before{top:116px;opacity:.025}
+@media(max-width:1100px){.site-heading-title{font-size:28px}.season-card{padding:26px}.filter-sidebar{padding:20px}}
+@media(max-width:900px){.filter-sidebar{position:static;max-height:none}}
+@media(max-width:768px){.header-bar{min-height:100px;padding-top:18px;padding-bottom:18px}.site-heading-title{font-size:clamp(18px,5vw,25px)}.main-content::before{top:100px}.season-card{padding:24px 20px;border-radius:20px}#todayDate{font-size:32px!important}#currentStage{font-size:17px!important}.season-card .timeline{gap:8px!important}.page{padding-top:22px}.card,.job-card{padding:22px 20px}#statsRow{gap:8px!important}#statsRow .stat-card{padding:16px 12px}.stat-number{font-size:26px!important}.data-update-help{line-height:1.7}}
 </style>
 </head>
 <body>
